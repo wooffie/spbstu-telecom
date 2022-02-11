@@ -8,8 +8,8 @@
 
 | Номер работы | Название                       | Готовность |                                                                                  Исходный код                                                                                 |
 | :----------: | :----------------------------- | :--------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|       1      | Sounds and Signals             |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab01.ipynb) |
-|       2      | Harmonics                      |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab02.ipynb) |
+|       1      | Sounds and Signals             |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab01.ipynb) |
+|       2      | Harmonics                      |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab02.ipynb) |
 |       3      | Non-periodic signals           |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab03.ipynb) |
 |       4      | Noises                         |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab04.ipynb) |
 |       5      | Autocorrelation                |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab05.ipynb) |
