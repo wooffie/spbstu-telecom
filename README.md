@@ -16,9 +16,9 @@
 |       6      | Discrete Cosine Transform      |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab06.ipynb) |
 |       7      | Discrete Fourier Transform     |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab07.ipynb) |
 |       8      | Filtering and Convolution      |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab08.ipynb) |
-|       9      | Differentiation and Integratio |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab09.ipynb) |
-|      10      | Signals and Systems            |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab10.ipynb) |
-|      11      | Modulation and sampling        |      ❌     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab11.ipynb) |
+|       9      | Differentiation and Integratio |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab09.ipynb) |
+|      10      | Signals and Systems            |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab10.ipynb) |
+|      11      | Modulation and sampling        |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab11.ipynb) |
 |   RadioGNU   | Не выбрана                     |      ❌     |                                                                                                                                                                               |
 
 📪 mail: wooftown@yandex.ru
