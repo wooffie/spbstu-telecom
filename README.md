@@ -19,7 +19,7 @@
 |       9      | Differentiation and Integratio |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab09.ipynb) |
 |      10      | Signals and Systems            |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab10.ipynb) |
 |      11      | Modulation and sampling        |      ✔️     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wooftown/spbstu-telecom/blob/main/ThinkDSP/lab11.ipynb) |
-|   RadioGNU   | Не выбрана                     |      ❌     |                                                                                                                                                                               |
+|   RadioGNU   | Frequency Shift Keying (FSK)   |      ✔️     |                                                                                                                                                                               |
 
 📪 mail: wooftown@yandex.ru
 

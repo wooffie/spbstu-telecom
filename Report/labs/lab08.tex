@@ -1,0 +1,232 @@
+\subsection{Упражнение 1}
+
+Что случится, если при увеличении ширины гауссова окна std не увеличивать число элементов в окне M?
+
+Возьмём функции для исследования данного вопроса:
+
+\begin{lstlisting}[language=Python]
+def zero_pad(array, n):
+    """Extends an array with zeros.
+
+    array: NumPy array
+    n: length of result
+
+    returns: new NumPy array
+    """
+    res = np.zeros(n)
+    res[:len(array)] = array
+    return res
+
+
+def plot_filter(M=11, std=2):
+    signal = SquareSignal(freq=440)
+    wave = signal.make_wave(duration=1, framerate=44100)
+    spectrum = wave.make_spectrum()
+
+    gaussian = scipy.signal.gaussian(M=M, std=std)
+    gaussian /= sum(gaussian)
+
+    ys = np.convolve(wave.ys, gaussian, mode='same')
+    smooth =  Wave(ys, framerate=wave.framerate)
+    spectrum2 = smooth.make_spectrum()
+
+    # plot the ratio of the original and smoothed spectrum
+    amps = spectrum.amps
+    amps2 = spectrum2.amps
+    ratio = amps2 / amps    
+    ratio[amps<560] = 0
+
+    # plot the same ratio along with the FFT of the window
+    padded =  zero_pad(gaussian, len(wave))
+    dft_gaussian = np.fft.rfft(padded)
+
+    plt.plot(np.abs(dft_gaussian), color='gray', label='Gaussian filter')
+    plt.plot(ratio, label='amplitude ratio')
+
+    decorate(xlabel='Frequency (Hz)', ylabel='Amplitude ratio')
+    plt.show()
+\end{lstlisting}
+
+После сделаем такой виджет:
+\begin{lstlisting}[language=Python]
+slider = widgets.IntSlider(min=2, max=100, value=11)
+slider2 = widgets.FloatSlider(min=0, max=20, value=2)
+interact(plot_filter, M=slider, std=slider2);
+\end{lstlisting}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1]{fig/lab08/lab08_5_0.png}
+		\caption{Гауссово окно для фильтрации}
+	\end{center}
+\end{figure}
+
+\begin{lstlisting}[language=Python]
+gaussian = scipy.signal.gaussian(M=11, std=11)
+gaussian /= sum(gaussian)
+
+plt.plot(gaussian, label='Gaussian')
+decorate(xlabel='Index')
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/lab08/lab08_6_0.png}
+		\caption{Гауссово окно}
+	\end{center}
+\end{figure}
+
+\begin{lstlisting}[language=Python]
+gaussian = scipy.signal.gaussian(M=11, std=1000)
+gaussian /= sum(gaussian)
+
+plt.plot(gaussian, label='Gaussian')
+decorate(xlabel='Index')
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/lab08/lab08_7_0.png}
+		\caption{Гауссово окно}
+	\end{center}
+\end{figure}
+
+При увеличении std, кривая становится шире, а сам БПФ меньше.
+
+\subsection{Упражнение 2}
+
+Что происходит с преобразованием Фурье, если меняется std гауссовой кривой?
+
+\begin{lstlisting}[language=Python]
+gaussian = scipy.signal.gaussian(M=16, std=2)
+gaussian /= sum(gaussian)
+
+plt.plot(gaussian, label='Gaussian')
+decorate(xlabel='Index')
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.7]{fig/lab08/lab08_10_0.png}
+		\caption{Гауссово окно}
+	\end{center}
+\end{figure}
+
+\begin{lstlisting}[language=Python]
+gaussian_fft = np.fft.fft(gaussian)
+plt.plot(abs(gaussian_fft), label='Gaussian')
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1]{fig/lab08/lab08_11_1.png}
+		\caption{FTT применённое на окно}
+	\end{center}
+\end{figure}
+
+Далее выполним свёртку:
+
+\begin{lstlisting}[language=Python]
+gaussian_fft_rolled = np.roll(gaussian_fft, len(gaussian) // 2)
+plt.plot(abs(gaussian_fft_rolled), label='Gaussian')
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1]{fig/lab08/lab08_13_1.png}
+		\caption{Результат}
+	\end{center}
+\end{figure}
+
+Если std гауссовой кривой увеличивается, то преобразование Фурье становится уже.
+
+
+\subsection{Упражнение 3}
+
+Поработать с разными окнами. Какое из них лучше подходит для филтра НЧ?
+
+Возьмём примеры из моего решения третьей главы:
+
+\begin{lstlisting}[language=Python]
+class SawtoothSignal(Sinusoid):
+
+  def evaluate(self,ts):
+    cycles = self.freq * ts + self.offset / (pi / 2)
+    frac, _ = np.modf(cycles)
+    u = unbias(frac)
+    high, low = abs(max(u)), abs(min(u))
+    ys = self.amp * u / max(high,low)
+    return ys
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+saw_signal = SawtoothSignal(200)
+saw_signal.plot()
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1]{fig/lab08/lab08_18_0.png}
+		\caption{Пилообразный сигнал}
+	\end{center}
+\end{figure}
+
+\begin{lstlisting}[language=Python]
+M = 16
+std = 2
+
+g = scipy.signal.gaussian(M,std)
+br = np.bartlett(M)
+bl = np.blackman(M)
+hm = np.hamming(M)
+hn = np.hanning(M)
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+array  = [g,br,bl,hm,hn]
+labels = ['gauss','barlett','blackman','hamming','hanning']
+
+for elem, label in zip(array,labels):
+  elem /= sum(elem)
+  plt.plot(elem,label=label)
+plt.legend()
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1]{fig/lab08/lab08_21_1.png}
+		\caption{Применение различных окон на выбранный сигнал}
+	\end{center}
+\end{figure}
+
+Дополним окна нулями и выведем ДПФ:
+
+\begin{lstlisting}[language=Python]
+for elem, label in zip(array, labels):
+  padded =  zero_pad(elem, len(wave))
+  dft_window = np.fft.rfft(padded)
+  plt.plot(abs(dft_window), label=label)
+plt.legend()
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1]{fig/lab08/lab08_23_1.png}
+		\caption{Применение различных окон на выбранный сигнал}
+	\end{center}
+\end{figure}
+
+Хэнинг лучше всего подоёдет для фильтрации низких частот, я так решил из-за колокльчиков.
+
+\begin{lstlisting}[language=Python]
+for elem, label in zip(array, labels):
+  padded =  zero_pad(elem, len(wave))
+  dft_window = np.fft.rfft(padded)
+  plt.plot(abs(dft_window), label=label)
+plt.legend()
+decorate(yscale='log')
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=1]{fig/lab08/lab08_25_0.png}
+		\caption{Логорифмический масштаб}
+	\end{center}
+\end{figure}
+
+Смотря на логорифмический масштаб можно сделать такой же вывод.
+
+\subsection{Вывод}
+
+В данной работе были рассмотрены фильтрации, свёртки, сглаживания. Сглаживание - операция удаляющая быстрые изменения сигнала для выявления общих особенностей. Свёртка - применение оконной функции к перекрывающимся сигментам сигнала. В упражнениях были исследованы различные свойства данных явлений.

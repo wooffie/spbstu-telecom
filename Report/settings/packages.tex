@@ -1,0 +1,79 @@
+% настройка кодировки, шрифтов и русского языка
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+% рабочие ссылки в документе
+\usepackage{hyperref}
+
+% графика
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% поворот страницы
+\usepackage{pdflscape}
+
+% качественные листинги кода
+\usepackage{minted}
+\usepackage{lstfiracode}
+
+\usepackage{listings}
+
+
+\usepackage{xcolor}
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=false,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+
+
+% отключение копирования номеров строк из листинга, работает не во всех просмотрщиках (в Adobe Reader работает)
+\usepackage{accsupp}
+\newcommand\emptyaccsupp[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+\let\theHFancyVerbLine\theFancyVerbLine
+\def\theFancyVerbLine{\rmfamily\tiny\emptyaccsupp{\arabic{FancyVerbLine}}}
+
+% библиография
+\bibliographystyle{templates/gost-numeric.bbx}
+\usepackage{csquotes}
+\usepackage[parentracker=true,backend=biber,hyperref=true,bibencoding=utf8,style=numeric-comp,language=auto,autolang=other,citestyle=gost-numeric,defernumbers=true,bibstyle=gost-numeric,sorting=ntvy]{biblatex}
+
+% установка полей
+\usepackage{geometry}
+
+% нумерация картинок по секциям
+\usepackage{chngcntr}
+
+% дополнительные команды для таблиц
+\usepackage{booktabs}
+
+% для заголовков
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage[dotinlabels]{titletoc}
+
+% разное для математики
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+
+% водяной знак на документе, см. main.tex
+\usepackage[printwatermark]{xwatermark}
